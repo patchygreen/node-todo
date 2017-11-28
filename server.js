@@ -27,14 +27,14 @@ app.get('/todos', function (req, res) {
 // GET /todo/:id
 app.get('/todos/:id', function (req, res) {
   var id = req.params.id;
-  var todoMatched;
-  todos.forEach(function (todoObj) {
-    if (todoObj.id && todoObj.id == id) {
-      todoMatched = todoObj;
+  var todoMatch;
+  todos.forEach(function (todo) {
+    if (todo.id && todo.id == id) {
+      todoMatch = todo;
     }
   });
-  if (todoMatched !== 'undefined') {
-    res.json(todoMatched);
+  if (todoMatch !== 'undefined') {
+    res.json(todoMatch);
   } else {
     res.status(404).send();
   }

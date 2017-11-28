@@ -33,11 +33,7 @@ app.get('/todos/:id', function (req, res) {
       todoMatch = todo;
     }
   });
-  if (todoMatch !== 'undefined') {
-    res.json(todoMatch);
-  } else {
-    res.status(404).send();
-  }
+  return todoMatch ? res.json(todoMatch) : res.status(404).send();
 });
 
 app.listen(PORT, function () {

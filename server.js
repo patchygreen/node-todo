@@ -26,10 +26,10 @@ app.get('/todos', function (req, res) {
 
 // GET /todo/:id
 app.get('/todos/:id', function (req, res) {
-  var id = req.params.id;
+  var id = parseInt(req.params.id, 10);
   var todoMatch;
   todos.forEach(function (todo) {
-    if (todo.id && todo.id == id) {
+    if (todo.id && todo.id === id) {
       todoMatch = todo;
     }
   });

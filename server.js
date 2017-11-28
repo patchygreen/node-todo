@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 3000;
 var todos = [];
-var todoNextId = 0;
+var todoNextId = 1;
 
 app.use(bodyParser.json());
 

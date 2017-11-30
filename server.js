@@ -21,7 +21,7 @@ app.get('/todos', function (req, res) {
   if (queryParams.hasOwnProperty('completed') && queryParams.completed === 'true') {
     filteredTodos = _.where(todos, {completed: true});
   } else if (queryParams.hasOwnProperty('completed') && queryParams.completed === 'false') {
-      filteredTodos = _.where(todos, {completed: false});
+    filteredTodos = _.where(todos, {completed: false});
   }
 
   if (queryParams.hasOwnProperty('q') && queryParams.q.length > 0) {
@@ -77,7 +77,7 @@ app.put('/todos/:id', function (req, res) {
   if (body.hasOwnProperty('completed') && _.isBoolean(body.completed)) {
     validAttributes.completed = body.completed;
   } else if (body.hasOwnProperty('completed')) {
-      return res.status(400).send();
+    return res.status(400).send();
   }
 
   if (body.hasOwnProperty('description') && _.isString(body.description) && body.description.trim().length > 0) {

@@ -34,7 +34,7 @@ sequelize.sync({
       return Todo.findAll({
         where: {
           description: {
-            $like: '%Office%'
+            $like: '%cleaoffice%'
           }
         }
       })

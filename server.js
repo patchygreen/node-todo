@@ -5,9 +5,6 @@ var db = require('./db');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
-var todos = [];
-var todoNextId = 1;
-
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
@@ -54,7 +51,7 @@ app.get('/todos/:id', function (req, res) {
 app.post('/todos', function (req, res) {
   var body = req.body;
   var todo = _.pick(body, 'description', 'completed');
-  db.todo.create(body).then(function (todo) {
+  db.todo.create(todo).then(function (todo) {
       res.json(todo.toJSON());
   }, function (e) {
     res.status(400).json(e);
@@ -107,6 +104,23 @@ app.put('/todos/:id', function (req, res) {
   }, () => {
     res.status(500).send();
   });
+});
+
+// POST /users
+app.post('/users', function (req, res) {
+  var body = _.pick(req.body, 'email', 'password');
+  db.user.create(body).then((user) => {
+    res.json(user.toJSON());
+  }, (e) => {
+    res.status(400).json(e);
+  });
+});
+
+// GET /users
+app.get('/users', function (req, res) {
+  db.user.findAll().then((users) => {
+    res.json(users);
+  }, (e) => { res.status(500).send(); });
 });
 
 db.sequelize.sync().then(function () {

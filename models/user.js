@@ -68,7 +68,7 @@ module.exports = function (sequelize, DataTypes) {
             var bytes = cryptojs.AES.decrypt(decodedJWT.token, 'abc123!!@!');
             var tokenData = JSON.parse(bytes.toString(cryptojs.enc.Utf8));
             
-            user.findById(tokenData.id).then(() => {
+            user.findById(tokenData.id).then((user) => {
               if (user) {
                 resolve(user);
               } else {
